@@ -22,7 +22,7 @@ public class UserDAO {
 		} 
 	}
 
-	public int login(String userID, String userPassword) {
+	public int UserLogin(String userID, String userPassword) {
 		String SQL = "SELECT userPassword FROM login_db WHERE userID = ?"; 
 		try { 
 			pstmt = conn.prepareStatement(SQL); 
@@ -31,6 +31,29 @@ public class UserDAO {
 			if(rs.next()) { //결과가 존재
 				if(rs.getString(1).equals(userPassword))  // ?로 사용자에게 받은 ID와 비밀번호가 일치하는 경우
 					return 1; //로그인 성공
+				else 
+					return 0; //Password오류
+			} 
+			return -1; //ID오류
+		} catch(Exception e) { 
+			e.printStackTrace(); 
+		} 
+		return -2; //db오류
+	}
+	
+	public int AdminLogin(String userID, String userPassword, String userType) {
+		String admin = "admin";
+		String SQL = "SELECT userType, userPassword FROM login_db WHERE userID = ?"; 
+		try { 
+			pstmt = conn.prepareStatement(SQL); 
+			pstmt.setString(1, userID); // sql 문에서 ?에 해당하는 값에 userID를 집어넣음 첫번째 물음표일 경우 1 두번째 물음표이면 2이런식으로 
+			rs = pstmt.executeQuery(); // sql 수행결과를 rs에 저장(Boolean) 존재시 true 존재x = false
+			if(rs.next()) { //결과가 존재
+				if(rs.getString(1).equals(userPassword))  // ?로 사용자에게 받은 ID와 비밀번호가 일치하는 경우
+					if(admin.equals(userType)) //유저타입이 admin인 경우
+						return 1; //로그인 성공
+					else 
+						return 0;
 				else 
 					return 0; //Password오류
 			} 

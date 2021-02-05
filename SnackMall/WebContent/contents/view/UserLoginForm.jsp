@@ -46,12 +46,12 @@
 <body>
 	<script src="https://kit.fontawesome.com/8351000410.js" crossorigin="anonymous"></script>
     <div id="wrap">
-    	<b><font size="6" color="gray"> <i class="fas fa-sign-in-alt"></i> 로그인</font></b>
+    	<b><font size="6" color="gray"> <i class="fas fa-sign-in-alt"></i>사용자 로그인</font></b>
         <br><br><br>
         <!-- 이미지 추가 -->
 		<img src="../../img/welcome.jpg">
 		<br><br>
-        <form name="loginInfo" method="post" onsubmit="return checkValue()" action="../pro/LoginPro.jsp">
+        <form name="loginInfo" method="post" onsubmit="return checkValue()" action="../pro/UserLoginPro.jsp">
        		<table>
                <tr>
 	               <td>아이디</td>
@@ -65,7 +65,7 @@
             <br>
             <input type="submit" value="로그인 ">  
         </form>
-       	<input type="button" value="관리자 로그인 페이지" onclick="goAdminLoginForm()"> 
+       	<input type="button" value="관리자로그인페이지" onclick="goAdminLoginForm()"> 
         <input type="button" value="아이디/비밀번호 찾기 " onClick="">
         <br>
         <br>
